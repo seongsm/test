@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLama Node App</title>
+</head>
+
+<body>
+    <h1>Welcome to LLama Node App!</h1>
+    <p>This is a simple web page served by Express.js.</p>
+    <label for="question">Enter your question:</label>
+    <input type="text" id="question" name="question">
+    <button onclick="askQuestion()">Ask a Question</button>
+    <p id="response"></p>
+
+    <script>
+        async function askQuestion() {
+            const question = document.getElementById('question').value;
+            const response = await fetch(`/ask?question=${encodeURIComponent(question)}`);
+            const data = await response.text();
+            document.getElementById('response').innerText = `Response: ${data}`;
+        }
+    </script>
+</body>
+
+</html>
